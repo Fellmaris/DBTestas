@@ -63,6 +63,8 @@ public class Menu {
                 String nameOfReciever = scanner.next();
                 String surnameOfReciever = scanner.next();
                 User reciever = operations.findUser(nameOfReciever,surnameOfReciever);
+                reciever.setBalance(reciever.getBalance() + amount);
+                user.setBalance(user.getBalance() - amount);
             }
         }
     }

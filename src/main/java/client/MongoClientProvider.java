@@ -2,6 +2,8 @@ package client;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientSettings;
+
+
 import com.mongodb.client.MongoClients;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
