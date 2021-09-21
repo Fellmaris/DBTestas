@@ -28,23 +28,23 @@ public class Menu {
         System.out.println("Enter your surname:");
         String surname = scanner.next();
         User user = operations.findUser(name, surname);
-        if (user != null){
-            System.out.println("Your current balance is: " + user.getBalance());
-        } else {
-            return;
+        if (user == null){
+           return;
         }
-        userInterface(scanner, operations);
+        userInterface(scanner, operations, user);
     }
 
-    private void userInterface(Scanner scanner, Operations operations) {
+    private void userInterface(Scanner scanner, Operations operations, User user) {
         while (true) {
+            System.out.println("Welcome " + user.getName() + user.getSurname() + "\n" +
+                    "Your current balance is: " + user.getBalance());
             System.out.println("Would you like to leave or send money?");
             System.out.println("1.Send money");
             System.out.println("2. Leave");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    sendMoney(scanner, operations);
+                    sendMoney(scanner, operations, user);
                     break;
                 case 2:
                     return;
@@ -52,8 +52,19 @@ public class Menu {
         }
     }
 
-    private void sendMoney(Scanner scanner, Operations operations) {
-        System.out.println("");
+    private void sendMoney(Scanner scanner, Operations operations, User user) {
+        while (true) {
+            System.out.println("How much money would you like to send?");
+            double amount = scanner.nextDouble();
+            if (amount > user.getBalance()) {
+                System.out.println("You do not have enough funds.");
+            } else {
+                System.out.println("To whoom would you like to send the money?");
+                String nameOfReciever = scanner.next();
+                String surnameOfReciever = scanner.next();
+                User reciever = operations.findUser(nameOfReciever,surnameOfReciever);
+            }
+        }
     }
 
     private void register(Scanner scanner, Operations operations) {
@@ -61,6 +72,10 @@ public class Menu {
         String name = scanner.next();
         System.out.println("Enter your surname:");
         String surname = scanner.next();
-        operations.InserUser(name, surname);
+        System.out.println("Enter your balance");
+        double balance = scanner.nextDouble();
+        User user = new User(name,surname, balance);
+        operations.InserUser(user.get_id(), user.name, user.surname, user.getBalance());
+        System.out.println("User succesfuly created");
     }
 }
