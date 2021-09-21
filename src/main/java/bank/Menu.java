@@ -53,7 +53,7 @@ public class Menu {
     }
 
     private void sendMoney(Scanner scanner, Operations operations) {
-
+        System.out.println("");
     }
 
     private void register(Scanner scanner, Operations operations) {
